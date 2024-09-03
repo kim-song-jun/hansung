@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 
-export const MainBanner = ({ setPage }) => {
+export const MainBanner = ({ setPage, setUserEmail }) => {
   const handleClickStart = async () => {
     const { value: email } = await Swal.fire({
       title: 'Input email address',
@@ -13,6 +14,7 @@ export const MainBanner = ({ setPage }) => {
     });
 
     if (email) {
+      setUserEmail(email);
       const sumbit = await Swal.fire({
         title: 'Thank you!',
         text: `We will send you the latest offers to ${email}`,

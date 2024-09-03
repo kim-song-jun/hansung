@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const SurveyForm = () => {
+export const SurveyForm = ({ userEmail }) => {
   const testArray = new Array(24).fill(0);
 
   const [userSelection, setUserSelection] = useState([]);
@@ -28,6 +28,11 @@ export const SurveyForm = () => {
   const setIsActive = index => {
     return userSelection.includes(index) ? 'bg-blue-300' : '';
   };
+
+  useEffect(() => {
+    //  TODO: Get Data from API by userEmail
+    console.log('SurveyForm', userEmail);
+  }, []);
 
   return (
     <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
