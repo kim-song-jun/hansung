@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: #ed7e00;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      box-shadow: 5px 5px 5px 5px gray;
+    }
+
+    main {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      background-color: #ed7e00;
+    }
+
+    footer {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      background-color: #ed7e00;
+    }
+
+    #title {
+      font-size: 35px;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    #total {
+      color: #ed8b00;
+      font-size: larger;
+      text-align: center;
+    }
+
+    #progress_bar_container {
+      width: 40%;
+      text-align: center;
+      margin-top: 0px;
+    }
+
+    #video_name {
+      color: darkgrey;
+      font-size: 5px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    video {
+      max-width: 50%;
+      height: auto;
+      display: block;
+      margin: 20px auto 5px;
+      border: 2px solid gainsboro;
+      border-radius: 10px;
+    }
+
+    #video {
+      outline: #ccc;
+      border: 10px;
+      background-color: #ed7e00;
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    #currentTime {
+      color: white;
+      margin: 20px auto;
+      font-size: 20px;
+    }
+
+    h5 {
+      margin: 0;
+      padding: 0;
+      color: black;
+    }
+
+    #progress_bar_container {
+      width: 40%;
+      text-align: center;
+      margin-top: 0px;
+    }
+
+    #progress_bar {
+      width: 100%;
+      background-color: #ccc;
+      height: 20px;
+      position: relative;
+    }
+
+    #progress_fill {
+      height: 100%;
+      width: 0;
+      background-color: #eaaa00;
+      position: absolute;
+      transition: width 0.5s ease-in-out;
+    }
+
+    button {
+      width: 300px;
+      background-color: #ed8b00;
+      font-weight: bold;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      cursor: pointer;
+      margin: 10px;
+      font-size: 18px;
+    }
+
+    button:hover {
+      background-color: #ed7e00;
+      font-weight: bold;
+    }
+
+    #video_name {
+      color: darkgrey;
+      font-size: 5px;
+    }
+
+    #completion_message {
+      margin: 100px;
+      font-size: 60px;
+    }
+
+    #completion_message2 {
+      color: #ed8b00;
+      margin: 0;
+      font-size: 30px;
+    }
+
+    #completion_message3 {
+      color: #ed8b00;
+      margin: 3px;
+      font-size: 40px;
+    }
+
+    textarea {
+      width: 100px;
+      border: none;
+    }
+
+    .form-elements {
+      display: flex;
+      flex-direction: column;
+      align-items: right;
+      justify-content: right;
+      text-align: right;
+    }
+
+    fieldset {
+      border: none;
+    }
+
+    img {
+      display: flex;
+      flex-direction: column;
+      align-items: right;
+      justify-content: right;
+      width: 200px;
+      height: auto;
+    }
+
+    #logo-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 10px;
+    }
+
+    #logo {
+      width: 150px;
+      height: auto;
+    }
+
+    #title {
+      font-size: 35px;
+      margin-top: 50px;
+    }
+
+    #replay {
+      background-color: white;
+      color: #ed7e00;
+      font-weight: bold;
+      width: 300px;
+    }
+
+    #replay:hover {
+      background-color: #333;
+      color: white;
+      font-weight: bold;
+    }
+
+    #replay_btn {
+      width: 100%;
+      height: auto;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #replay_btn div {
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    #result_title {
+      width: 100%;
+      margin: 0;
+      background-color: #ed7e00;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #result_list {
+      width: 100%;
+      margin-bottom: 6%;
+      background-color: #ed7e00;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #radio_container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      background-color: #ed7e00;
+      color: white;
+      margin-top: 20px;
+      /* 간격 조정 */
+      padding: 15px 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #radio_container input[type="radio"] {
+      display: none;
+    }
+
+    #radio_btn:hover {
+      background-color: #333;
+      color: white;
+      font-weight: bold;
+    }
+
+    #radio_btn {
+      background-color: white;
+      color: #ed7e00;
+      margin-top: 30px;
+      width: 300px;
+    }
+
+    #replay2 {
+      background-color: white;
+      color: #ed7e00;
+      text-align: center;
+      margin: 7px auto;
+      width: 300px;
+    }
+
+    #replay2:hover {
+      background-color: #333;
+      color: white;
+      font-weight: bold;
+    }
+
+    #radio_title {
+      font-size: 30px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    #radio_container label {
+      font-size: 20px;
+      display: inline-block;
+      cursor: pointer;
+      height: 30px;
+      width: 200px;
+      border: none;
+      line-height: 24px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 28x;
+      background-color: #fff;
+      color: #333;
+      margin: 7px;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    #radio_container label:hover {
+      background-color: #333;
+      color: #fff;
+    }
+
+    #radio_container input[type="radio"]:checked+label {
+      background-color: #333;
+      color: #fff;
+    }
+
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      #total {
+        font-size: 16px;
+      }
+
+      #video_name {
+        font-size: 10px;
+      }
+
+      #completion_message {
+        font-size: 36px;
+      }
+
+      button {
+        font-size: 14px;
+      }
+
+      #logo-container {
+        position: relative;
+        padding: 10px;
+      }
+
+      #logo {
+        width: 80px;
+      }
+
+      #title {
+        font-size: 18px;
+        margin-top: 10px;
+      }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+  <script data-cfasync="false" src="form-submission-handler.js"></script>
+  <script>
+    let result;
+    let finish_timer;
+    let next_video;
+    let check = false;
+
+    let Previous = false;
+    let video_path;
+    let resultList = [];
+    let finish_result = [];
+    let annotatorName = ''; // 주석자 이름을 저장할 변수
+    let annotatorName_email = '';
+    let isEmailValid = false;
+    let finish = false
+    let prev_video;
+    let currentVideo; // 현재 동영상을 저장하기 위한 변수
+    let count = 0;
+    //===========check===============
+    let TOTAL_VIDEO_NUMBER = 200; // 총 비디오 개수
+    let video_strat; // 비디오 시작 파일명
+    let video_end; // 마지막 비디오 파일명
+    let folder; // 비디오 경로 폴더 명
+
+    let noise_videos = [303, 338, 490, 491, 679, 681, 692, 693, 728, 729, 730, 731, 732, 739, 740, 741, 743, 745, 746, 798, 804,
+      812, 820, 827, 828, 829, 999, 1000, 1014, 1153, 1206, 1207, 1349, 1360, 1361, 1424, 1505, 1547, 1571, 1647, 1650, 1692, 1782,
+      1881, 2019, 2563, 2652, 2657, 2688, 2693, 2694, 2851, 2854, 2855, 2856, 2871, 2882, 2883, 2884, 2885, 2886, 2888, 2893, 2894,
+      2899, 2903, 2906, 2907, 2910, 2920, 3725, 3896, 4048, 4100, 4101, 4112, 4128, 4135, 4166, 4193, 4307, 4479, 4480, 4568, 4819,
+      5168, 5345, 5620, 5631, 5635, 5652, 5670, 5671, 5679, 5680, 5681, 5683, 5684, 5685, 5686, 5687, 5688, 5689, 5692, 5701, 5702,
+      5703, 5704, 5718, 5725, 5758, 5827, 5848, 5993, 6361, 6833, 6834, 6891, 7304, 7350, 7369, 7436, 8761, 8762, 8763, 8767, 8768,
+      8773, 8784, 8845, 8886, 8889, 8898, 8911, 8933, 8935, 9059, 9060, 9063, 9064, 9066, 9067, 9069, 9079, 9080, 9086, 9201, 9242,
+      9426, 9514, 9548, 9549, 9591, 9746, 9748, 9749, 9751, 9752, 9754, 9760, 9761, 9762, 9763, 9764, 9765, 9766, 9767, 9768, 9769,
+      9770, 9771, 9772, 9773, 9774, 9775, 9776, 9777, 9808, 9817, 9841, 9879, 9897, 9908, 9909, 9910, 9963, 9968, 9976, 10002, 10053,
+      10091, 10101, 10136, 10143, 10161, 10174, 10245, 10273, 10285, 10286, 10325, 10436, 10437, 10438, 10439, 10441, 10442, 10443,
+      10444, 10445, 10446, 10447, 10448, 10450, 10451, 10452, 10453, 10454, 10455, 10456, 10457, 10458, 10459, 10460, 10461, 10462,
+      10463, 10464, 10465, 10466, 10467, 10468, 10469, 10470, 10471, 10472, 10473, 10474, 10475, 10476, 10477, 10478, 10479, 10480,
+      10481, 10482, 10483, 10484, 10485, 10486, 10487, 10488, 10489, 10490, 10491, 10492, 10493, 10494, 10495, 10496, 10497, 10498,
+      10499, 10500, 10501, 10502, 10503, 10504, 10505, 10507, 10508, 10509, 10510, 10511, 10512, 10513, 10514, 10515, 10516, 10517,
+      10519, 10520, 10521, 10522, 10523, 10524, 10525, 10526, 10527, 10528, 10529, 10530, 10531, 10532, 10533, 10534, 10535, 10549,
+      10553, 10554, 10555, 10556, 10557, 10558, 10559, 10560, 10562, 10563, 10572, 10578, 10586, 10604, 10605, 10612, 10616, 10624,
+      10636, 10644, 10646, 10651, 10652, 10653, 10654, 10655, 10657, 10658, 10671, 10674, 10686, 10687, 10688, 10689, 10690, 10691,
+      10692, 10693, 10694, 10695, 10696, 10697, 10758, 10759, 10760, 10767, 10771, 10772, 10781, 10782, 10790, 10800, 10832, 10834,
+      10835, 10841, 10846, 10847, 10848, 10895, 10948, 10949, 11110, 11186, 11206, 11207, 11250, 11389, 11623]
+
+
+    // let PASSWORD = '0000'
+    let DATA_FOLDER = 0
+
+    let skip_video = [421, 841, 1261, 1681, 2521, 2941, 3361, 3781, 4621, 5041, 5461]
+
+
+    // 초기에 프로그래스 바 표시
+    updateProgressBar();
+
+    //=================== 주석자 정보 입력 ============================================================================
+
+
+    let password = prompt('공유 받은 비밀번호를 입력하시오.', '****')
+    password_check(password)
+
+    function password_check(password) {
+      if (password == '1111') {
+        folder = 'ETRI/6041-6240';
+        video_strat = 6124;
+        video_end = 6240;
+        TOTAL_VIDEO_NUMBER = 118;
+        DATA_FOLDER = 14;
+
+      } else if (password == '0001') {
+        folder = 'ETRI/61-260'; video_strat = 61; video_end = 260; DATA_FOLDER = 1;
+      } else if (password == '0002') {
+        folder = 'ETRI/261-520'; video_strat = 261; video_end = 520; DATA_FOLDER = 1;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0003') {
+        folder = 'ETRI/521-720'; video_strat = 521; video_end = 720; DATA_FOLDER = 2;
+      } else if (password == '0004') {
+        folder = 'ETRI/721-980'; video_strat = 721; video_end = 980; DATA_FOLDER = 2;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0005') {
+        folder = 'ETRI/981-1180'; video_strat = 981; video_end = 1180; DATA_FOLDER = 3;
+      } else if (password == '0006') {
+        folder = 'ETRI/1181-1440'; video_strat = 1181; video_end = 1440; DATA_FOLDER = 3;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0007') {
+        folder = 'ETRI/1441-1640'; video_strat = 1441; video_end = 1640; DATA_FOLDER = 4;
+      } else if (password == '0008') {
+        folder = 'ETRI/1641-1900'; video_strat = 1641; video_end = 1900; DATA_FOLDER = 4;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0009') {
+        folder = 'ETRI/1901-2100'; video_strat = 1901; video_end = 2100; DATA_FOLDER = 5;
+      } else if (password == '0010') {
+        folder = 'ETRI/2161-2360'; video_strat = 2161; video_end = 2360; DATA_FOLDER = 5;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0011') {
+        folder = 'ETRI/2361-2620'; video_strat = 2361; video_end = 2620; DATA_FOLDER = 6;
+      } else if (password == '0012') {
+        folder = 'ETRI/2621-2820'; video_strat = 2621; video_end = 2820; DATA_FOLDER = 6;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0013') {
+        folder = 'ETRI/2821-3080'; video_strat = 2821; video_end = 3080; DATA_FOLDER = 7;
+      } else if (password == '0014') {
+        folder = 'ETRI/3081-3280'; video_strat = 3081; video_end = 3280; DATA_FOLDER = 7;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0015') {
+        folder = 'ETRI/3281-3540'; video_strat = 3281; video_end = 3540; DATA_FOLDER = 8;
+      } else if (password == '0016') {
+        folder = 'ETRI/3541-3740'; video_strat = 3541; video_end = 3740; DATA_FOLDER = 8;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0017') {
+        folder = 'ETRI/3741-4000'; video_strat = 3741; video_end = 4000; DATA_FOLDER = 9;
+      } else if (password == '0018') {
+        folder = 'ETRI/4001-4200'; video_strat = 4001; video_end = 4200; DATA_FOLDER = 9;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0019') {
+        folder = 'ETRI/4261-4460'; video_strat = 4261; video_end = 4460; DATA_FOLDER = 10;
+      } else if (password == '0020') {
+        folder = 'ETRI/4461-4720'; video_strat = 4461; video_end = 4720; DATA_FOLDER = 10;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0021') {
+        folder = 'ETRI/4721-4920'; video_strat = 4721; video_end = 4920; DATA_FOLDER = 11;
+      } else if (password == '0022') {
+        folder = 'ETRI/4921-5180'; video_strat = 4921; video_end = 5180; DATA_FOLDER = 11;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0023') {
+        folder = 'ETRI/5181-5380'; video_strat = 5181; video_end = 5380; DATA_FOLDER = 12;
+      } else if (password == '0024') {
+        folder = 'ETRI/5381-5640'; video_strat = 5381; video_end = 5640; DATA_FOLDER = 12;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0025') {
+        folder = 'ETRI/5641-5840'; video_strat = 5641; video_end = 5840; DATA_FOLDER = 13;
+      } else if (password == '0026') {
+        folder = 'ETRI/5841-6040'; video_strat = 5841; video_end = 6040; DATA_FOLDER = 13;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0027') {
+        folder = 'ETRI/6041-6240'; video_strat = 6041; video_end = 6240; DATA_FOLDER = 14;
+      } else if (password == '0028') {
+        folder = 'ETRI/6241-6440'; video_strat = 6241; video_end = 6440; DATA_FOLDER = 14;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0029') {
+        folder = 'ETRI/6441-6640'; video_strat = 6441; video_end = 6640; DATA_FOLDER = 15;
+      } else if (password == '0030') {
+        folder = 'ETRI/6641-6840'; video_strat = 6641; video_end = 6840; DATA_FOLDER = 15;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0031') {
+        folder = 'ETRI/6841-7040'; video_strat = 6841; video_end = 7040; DATA_FOLDER = 16;
+      } else if (password == '0032') {
+        folder = 'ETRI/7041-7240'; video_strat = 7041; video_end = 7240; DATA_FOLDER = 16;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0033') {
+        folder = 'ETRI/7241-7440'; video_strat = 7241; video_end = 7440; DATA_FOLDER = 17;
+      } else if (password == '0034') {
+        folder = 'ETRI/7441-7640'; video_strat = 7441; video_end = 7640; DATA_FOLDER = 17;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0035') {
+        folder = 'ETRI/7641-7840'; video_strat = 7641; video_end = 7840; DATA_FOLDER = 18;
+      } else if (password == '0036') {
+        folder = 'ETRI/7841-8040'; video_strat = 7841; video_end = 8040; DATA_FOLDER = 18;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0037') {
+        folder = 'ETRI/8041-8240'; video_strat = 8041; video_end = 8240; DATA_FOLDER = 19;
+      } else if (password == '0038') {
+        folder = 'ETRI/8241-8440'; video_strat = 8241; video_end = 8440; DATA_FOLDER = 19;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0039') {
+        folder = 'ETRI/8441-8640'; video_strat = 8441; video_end = 8640; DATA_FOLDER = 20;
+      } else if (password == '0040') {
+        folder = 'ETRI/8641-8840'; video_strat = 8641; video_end = 8840; DATA_FOLDER = 20;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0041') {
+        folder = 'ETRI/8841-9040'; video_strat = 8841; video_end = 9040; DATA_FOLDER = 21;
+      } else if (password == '0042') {
+        folder = 'ETRI/9041-9240'; video_strat = 9041; video_end = 9240; DATA_FOLDER = 21;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0043') {
+        folder = 'ETRI/9241-9440'; video_strat = 9241; video_end = 9440; DATA_FOLDER = 22;
+      } else if (password == '0044') {
+        folder = 'ETRI/9441-9640'; video_strat = 9441; video_end = 9640; DATA_FOLDER = 22;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0045') {
+        folder = 'ETRI/9641-9840'; video_strat = 9641; video_end = 9840; DATA_FOLDER = 23;
+      } else if (password == '0046') {
+        folder = 'ETRI/9841-10040'; video_strat = 9841; video_end = 10040; DATA_FOLDER = 23;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0047') {
+        folder = 'ETRI/10041-10240'; video_strat = 10041; video_end = 10240; DATA_FOLDER = 24;
+      } else if (password == '0048') {
+        folder = 'ETRI/10241-10440'; video_strat = 10241; video_end = 10440; DATA_FOLDER = 24;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0049') {
+        folder = 'ETRI/10441-10640'; video_strat = 10441; video_end = 10640; DATA_FOLDER = 25;
+      } else if (password == '0050') {
+        folder = 'ETRI/10641-10840'; video_strat = 10641; video_end = 10840; DATA_FOLDER = 25;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0051') {
+        folder = 'ETRI/10841-11040'; video_strat = 10841; video_end = 11040; DATA_FOLDER = 26;
+      } else if (password == '0052') {
+        folder = 'ETRI/11041-11240'; video_strat = 11041; video_end = 11240; DATA_FOLDER = 26;
+        //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      } else if (password == '0053') {
+        folder = 'ETRI/11241-11440'; video_strat = 11241; video_end = 11440; DATA_FOLDER = 27;
+      } else if (password == '0054') {
+        folder = 'ETRI/11441-11640'; video_strat = 11441; video_end = 11640; DATA_FOLDER = 27;
+      } else {
+        alert('올바르지 않은 비밀번호입니다.');
+        password = prompt('공유 받은 비밀번호를 입력하시오.', '****')
+        password_check(password)
+      }
+    }
+
+
+    //======================================================================================================
+
+    while (!annotatorName) {
+      annotatorName = prompt('주석자 본인 이름을 입력하시오.', 'ex) 홍길동');
+    }
+
+    while (!isEmailValid) {
+      annotatorName_email = prompt('이메일을 입력하시오.', '');
+
+      // 이메일 형식을 정규 표현식을 사용하여 검증
+      const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+      isEmailValid = emailPattern.test(annotatorName_email);
+
+      if (!isEmailValid) {
+        alert('올바른 이메일 형식이 아닙니다. 이메일 주소를 다시 입력하세요.');
+      }
+    }
+
+
+    alert('주석을 시작하시겠니까? \n\n주석이 완료되기 전까지, 웹 브라우저를 종료하면 초기화되므로 유의하시기 바랍니다.')
+
+    //=================== 이메일 보내기 ======================
+    function handleConfirmButtonClick() {
+      count++;
+      const radioButtons_list = document.getElementsByName('level');
+      let result = null;
+
+      radioButtons_list.forEach((node) => {
+        if (node.checked) {
+          result = node.value;
+        }
+      });
+      // console.log(result)
+      if (result !== null) {// 라디오 버튼이 선택된 경우
+        const radioContainer = document.getElementById('radio_container');
+        radioContainer.style.display = "none";
+        const replayButton2 = document.getElementById('replay2');
+        replayButton2.style.display = "none";
+        const replayButton = document.getElementById('replay');
+        replayButton.style.display = "block";
+        const video = document.getElementById('video');
+        video.style.display = "block";
+        const footer_ = document.getElementById('footer');
+        footer_.style.display = "none";
+        const currentTimeDisplay = document.getElementById("currentTime");
+        currentTimeDisplay.style.display = "block"
+
+
+
+
+        // form 요소 가져오기
+        const form = document.getElementById('email');
+
+        //==================================== folder 별 action 수정
+        if (DATA_FOLDER == 1) {
+          form.action = 'https://script.google.com/macros/s/AKfycbyP5VyEJqJvGQvM4qeVZpIZ3jmIoq2d0kjQHWMAJBvSHRmsQOFtrgGeNOUwP-jIDmeIiw/exec'
+        } else if (DATA_FOLDER == 2) {
+          form.action = 'https://script.google.com/macros/s/AKfycbwrBW91xRvGb-0GyVxZWicqYEtfW_7Io5VS9J9NiqquMPI3VwccXb1rTkjVAOhVUhC5kQ/exec'
+        } else if (DATA_FOLDER == 3) {
+          form.action = 'https://script.google.com/macros/s/AKfycbxvjPAu9kyUB4R_Yjf9qPzZVedRNM_enD2jPdPXMDP-sxkKamQYdvKPCRuUhnhra7ewSw/exec'
+        } else if (DATA_FOLDER == 4) {
+          form.action = 'https://script.google.com/macros/s/AKfycby2dH7LeYm3dd5dxF-WfpfDDUkyCFZZqmY6OyBdMuRWzvcIMNUCNJpuZrU15X_qqp2bvQ/exec'
+        } else if (DATA_FOLDER == 5) {
+          form.action = 'https://script.google.com/macros/s/AKfycbyaedW75Pc2htE-m3ZWwHiAVb3m54BqoDvWaN5eqYjXzO4TORKKyHka_Py-f_nCriUy/exec'
+        } else if (DATA_FOLDER == 6) {
+          form.action = 'https://script.google.com/macros/s/AKfycbzhcIYnSbIDVKqkfBsggpGM_PYEqRW6tbW58HNeuyoHLpAefH4dVixR60deawY76-C1Tw/exec'
+        } else if (DATA_FOLDER == 7) {
+          form.action = 'https://script.google.com/macros/s/AKfycbxc_pnBWD6cFUuNzTvAhtJkSDnUoy9GEPbEaIqAgXCOLYAQxBxHFL6pLl7mLeBMemib/exec'
+        } else if (DATA_FOLDER == 8) {
+          form.action = 'https://script.google.com/macros/s/AKfycby6H2g4ML8JsD5CfglYe78ThN4OgfgNCegTESrzZ0Mr8QiV9fWL-VnINRDUSQXW9VCV/exec'
+        } else if (DATA_FOLDER == 9) {
+          form.action = 'https://script.google.com/macros/s/AKfycby7-6EUNj7dz3oUsUdIXm0xorBPeR0LGfJiim0tMWTcIu-30HADKxsYFxzR6As2ae5bIA/exec'
+        } else if (DATA_FOLDER == 10) {
+          form.action = 'https://script.google.com/macros/s/AKfycbyWrLr2maz9-eOFt2QDXlG3F2iQJjcw0KfRHekJvivP8GWhVgfl8JPxC8Esv-cpV_Uq_g/exec'
+        } else if (DATA_FOLDER == 11) {
+          form.action = 'https://script.google.com/macros/s/AKfycbyR3fuaYBrJsPSVqy4_nBcgtVmNTKSSkCvuYTlVQK9lOg42qsahn51B_jJ3kj5YYdju/exec'
+        } else if (DATA_FOLDER == 12) {
+          form.action = 'https://script.google.com/macros/s/AKfycbywiHBnxhTOD7kv7THiD9qvs8-6gX8xBvMgiBh6Y7djvSbLNap7zHFbBgBdLTubHcf2JA/exec'
+        } else if (DATA_FOLDER == 13) {
+          form.action = 'https://script.google.com/macros/s/AKfycbznbmSLPCGP5AAfC__D7X0kThtjHd41QVMpKwMq4c5Wyn-ddUNmwdzRiyaWPbbHkum9qg/exec'
+        } else if (DATA_FOLDER == 14) {
+          form.action = 'https://script.google.com/macros/s/AKfycbzwqhI7zDYi1rGqpDjBVJm0iyRuQOt8nhDoh47-9PWfAEEODfQmtwbTpciLhOdvueIJ/exec'
+        } else if (DATA_FOLDER == 15) {
+          form.action = 'https://script.google.com/macros/s/AKfycbx7G8a6sOV1b_HEF3L5sNO5Gd9HRRrnm7RXUZ8SGV8NQukk31AnRfFQz03RiixT1mCD/exec'
+        } else if (DATA_FOLDER == 16) {
+          form.action = 'https://script.google.com/macros/s/AKfycbwfomh9xeGlztBNzrcvQcgHUn9wFSVHfQF2gbRD0rvmy5_h_aD4ilj0JuY3GXV_DyR2/exec'
+        } else if (DATA_FOLDER == 17) {
+          form.action = 'https://script.google.com/macros/s/AKfycby1WNhm9KXK-juMmdPuKoVrSbe1EAWjS_b_7iEMjdN25uaHtw8L8WNNzC9u0bvjQG1jsA/exec'
+        } else if (DATA_FOLDER == 18) {
+          form.action = 'https://script.google.com/macros/s/AKfycbz1Jh9tADePua-SFwp_k8e3nPg46kP1HMgTQMV0ro_71XvzewpbQDuiYpkdQJHI1NhO/exec'
+        } else if (DATA_FOLDER == 19) {
+          form.action = 'https://script.google.com/macros/s/AKfycbxTWADyGClwNsgC9xz7XeF01PABExFvWbHwyJ_DvOvEEU0TBic4llcCCgdwuzU92gKO/exec'
+        } else if (DATA_FOLDER == 20) {
+          form.action = 'https://script.google.com/macros/s/AKfycbyWqHhM-YjeCuIiq2kC8R50mLwkudHAJxaPlft61dOaJ62egmTFnj10uZLmJRB1NRIdTA/exec'
+        } else if (DATA_FOLDER == 21) {
+          form.action = 'https://script.google.com/macros/s/AKfycby-juGvstYJ5MKxDEcdhpW5KsIRRtKlI54ibKXzZhbkFNpKA6vljMXv_f8yhpXCNa435Q/exec'
+        } else if (DATA_FOLDER == 22) {
+          form.action = 'https://script.google.com/macros/s/AKfycbze6_acq5ke4wXrDF3vrj-SQbgAwxK2o6zOvyu09fRXTAezZlpQZmt8c039xX25ThQ/exec'
+        } else if (DATA_FOLDER == 23) {
+          form.action = 'https://script.google.com/macros/s/AKfycbwDD3JBjx5jVtfjn4BS10yA7nBeZjutxl9XNCW5FUy29RC9fB1VAnCEwZ8kwc2Uit4EVg/exec'
+        } else if (DATA_FOLDER == 24) {
+          form.action = 'https://script.google.com/macros/s/AKfycbxf-VfnmYMGwXMrUfp94NvZYADVK_v7aKJzDQzpWrE9eO-r4b2CEmJJHMx0UuuD37pu/exec'
+        } else if (DATA_FOLDER == 25) {
+          form.action = 'https://script.google.com/macros/s/AKfycbwLDIZ8yB2jMsHrmgsyemjT0kdD7fC0bwbjIisBfWYxt-7MLMr5HulICz0CaMKFmK0/exec'
+        } else if (DATA_FOLDER == 26) {
+          form.action = 'https://script.google.com/macros/s/AKfycby7KNufetgRQLp40ftkXhEWOviOwhxqCsUXSTS6KbQGZllvmJ2de-ozriQ-VidqWSybkg/exec'
+        } else if (DATA_FOLDER == 27) {
+          form.action = 'https://script.google.com/macros/s/AKfycbxAoTzYnJYGGML0Dr_Ccosks6kKyR0xXmkbdwIQUulr3hCmhxglQQGmLw9RRFGUCh3Dag/exec'
+        }
+
+
+
+        // 데이터를 form의 input 필드에 설정
+        form.querySelector('input[name="Email"]').value = annotatorName_email;
+        form.querySelector('input[name="Name"]').value = annotatorName;
+
+        form.querySelector('input[name="Subject"]').value = folder;
+        form.querySelector('input[name="Video"]').value = video_strat + 'mp4';
+
+        form.querySelector('input[name="Concentration"]').value = result;
+        form.querySelector('input[name="Time_check"]').value = getCurrentTime();
+
+        form.submit();
+
+        // 라디오 버튼 초기화
+        resetRadioButtons();
+        updateProgressBar();
+        video_strat++;
+        const total = document.getElementById("total");
+        total.textContent = '주석 진행 상황 : ' + count + '/' + TOTAL_VIDEO_NUMBER
+        resultList.push({ subject_name: folder, video: video_path.substring(6), concentration: result, time: getCurrentTime() });
+
+
+        // 주석이 완료되면 메시지를 표시
+        if (count == TOTAL_VIDEO_NUMBER) {
+          showCompletionMessage(true);
+          const email_send = document.getElementById('email')
+          email_send.style.display = "none"
+          finish = true
+          const main = document.getElementById('main')
+          main.style.backgroundColor = "white";
+
+          //주석이 완료되었음을 진행자에게 알리는 방법 구현
+        }
+
+
+        //****************** 동영상 예외 처리 ******************
+        //___________________사이트 업로드 수정본__________________
+        for (let j = 0; j < skip_video.length; j++) {
+          if (video_strat == skip_video[j]) {
+            video_strat = skip_video[j] + 60
+          }
+        }
+
+        for (let i = 0; i < noise_videos.length; i++) {
+          if (video_strat == noise_videos[i]) {
+            TOTAL_VIDEO_NUMBER--
+            video_strat++
+            next_video = ".\\" + folder + '\\' + video_strat + ".mp4";
+            subject = folder
+          } else {
+            next_video = ".\\" + folder + '\\' + video_strat + ".mp4";
+            subject = folder
+          }
+        }
+        //_________________________________________________________
+
+
+        // next_video = ".\\" + folder + '\\' + cnt + ".mp4";
+        //subject = folder
+
+
+        addVideo();
+      } else {
+        alert('집중도를 선택하시오');
+      }
+    }
+
+    // 현재 시간을 문자열로 반환하는 함수
+    function getCurrentTime() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+
+
+    //=================== 라디오 버튼 제출 ====================
+    function submitRadio() {
+      count++;
+      const radioButtons_list = document.getElementsByName('level');
+      let result = null;
+
+      radioButtons_list.forEach((node) => {
+        if (node.checked) {
+          result = node.value;
+        }
+      })
+      console.log(result)
+      if (result !== null) {// 라디오 버튼 선택된 경우
+
+        const radioContainer = document.getElementById('radio_container');
+        radioContainer.style.display = "none";
+        const replayButton2 = document.getElementById('replay2');
+        replayButton2.style.display = "none";
+        const replayButton = document.getElementById('replay');
+        replayButton.style.display = "block";
+        const video = document.getElementById('video');
+        video.style.display = "block";
+        const footer_ = document.getElementById('footer');
+        footer_.style.display = "none";
+        const currentTimeDisplay = document.getElementById("currentTime");
+        currentTimeDisplay.style.display = "block"
+
+        // 주석이 완료되면 메시지를 표시
+        if (count == TOTAL_VIDEO_NUMBER) {
+          showCompletionMessage(true);
+          const email_send = document.getElementById('email')
+          email_send.style.display = "none"
+          finish = true
+          const main = document.getElementById('main')
+          main.style.backgroundColor = "white";
+        }
+        // 라디오 버튼 초기화
+        resetRadioButtons();
+        // replayVideo();
+
+        updateProgressBar();
+
+        //****************** 동영상 예외 처리 ******************
+        //___________________사이트 업로드 수정본__________________
+        for (let j = 0; j < skip_video.length; j++) {
+          if (video_strat == skip_video[j]) {
+            video_strat = skip_video[j] + 60
+          }
+        }
+
+        for (let i = 0; i < noise_videos.length; i++) {
+          if (video_strat == noise_videos[i]) {
+            TOTAL_VIDEO_NUMBER--
+            video_strat++
+            next_video = ".\\" + folder + '\\' + video_strat + ".mp4";
+            subject = folder
+          } else {
+            next_video = ".\\" + folder + '\\' + video_strat + ".mp4";
+            subject = folder
+          }
+        }
+        //_________________________________________________________
+
+        // cnt++;
+        // next_video = ".\\" + folder + '\\' + cnt + ".mp4";
+        // subject = folder
+
+
+        // 엑셀 파일에 데이터 추가
+        const currentTime = new Date();
+
+
+        resultList.push({ subject_name: subject, video: video_path.substring(6), concentration: result, time: currentTime });
+        const total = document.getElementById("total");
+        total.textContent = '주석 진행 상황 : ' + resultList.length + '/' + TOTAL_VIDEO_NUMBER
+
+        if (finish == true) {
+          // 이메일 전송 데이터
+          const Subject = document.getElementById('Subject')
+          const Video = document.getElementById('Video')
+          const Concentration = document.getElementById('Concentration')
+          const Time = document.getElementById('Time')
+
+          for (const item of resultList) {
+            Subject.textContent += item.subject_name + '\n';
+            Video.textContent += item.video + '\n'
+            Concentration.textContent += item.concentration + '\n';
+            Time.textContent += item.time + '\n';
+          }
+        }
+        addVideo();
+      } else {
+        alert('집중도를 선택하시오')
+      }
+    }
+
+    // 라디오 버튼 초기화 함수
+    function resetRadioButtons() {
+      const radioButtons = document.querySelectorAll('input[name="level"]');
+      for (const radioButton of radioButtons) {
+        radioButton.checked = false;
+      }
+    }
+
+    //=================== 비디오 끝나면  설문조사 ==================
+    function videoEnded(previous) {
+      clearTimeout(finish_timer);
+      const footer_ = document.getElementById('footer');
+      footer_.style.display = "block";
+      const radio_container = document.getElementById('radio_container')
+      radio_container.style.display = "block";
+      const replayButton2 = document.getElementById('replay2');
+      replayButton2.style.display = "block";
+      const video = document.getElementById('video')
+      video.style.display = "none";
+      const replayButton = document.getElementById('replay');
+      replayButton.style.display = "none";
+      const currentTimeDisplay = document.getElementById("currentTime");
+      currentTimeDisplay.style.display = "none"
+
+    }
+
+    //================== 다음 동영상 ===================
+    function addVideo() {
+      const videoContainer = document.getElementById("video");
+      videoContainer.innerHTML = ''; // 기존 비디오 삭제
+
+      const video = document.createElement("video");
+      video.autoplay = true;
+      video.muted = true;
+      video.controls = false; // 동영상 컨트롤러 비활성화
+      video.addEventListener('ended', () => videoEnded(false)); // 비디오 재생이 끝났을 때 호출
+
+      const currentTimeDisplay = document.getElementById("currentTime");
+      video.addEventListener("timeupdate", function () {
+        // 현재 동영상의 재생 시간을 초 단위로 얻습니다.
+        const currentTime = video.currentTime;
+
+        // 시간을 분:초 형식으로 표시합니다.
+        const minutes = Math.floor(currentTime / 60);
+        const seconds = Math.floor(currentTime % 60);
+
+        // 시간을 2자리 숫자로 포맷팅합니다.
+        const formattedTime = minutes.toString().padStart(2, "0") + ":" + seconds.toString().padStart(2, "0");
+
+        // 화면에 표시합니다.
+        currentTimeDisplay.textContent = formattedTime;
+      });
+
+
+      // 현재 재생 중인 동영상을 일시 중지
+      if (currentVideo) {
+        currentVideo.pause();
+      }
+
+      if (check === true && Previous === false) {
+        video.src = next_video;
+        prev_video = video.src;
+        video_path = next_video;
+      } else if (check !== true && Previous === false) {
+
+        //****************** 동영상 예외 처리 ******************
+        //___________________사이트 업로드 수정본__________________
+        for (let j = 0; j < skip_video.length; j++) {
+          if (video_strat == skip_video[j]) {
+            video_strat = skip_video[j] + 60
+          }
+        }
+
+        for (let i = 0; i < noise_videos.length; i++) {
+          if (video_strat == noise_videos[i]) {
+            TOTAL_VIDEO_NUMBER--
+            video_strat++
+            video.src = ".\\" + folder + '\\' + video_strat + ".mp4";
+            prev_video = ".\\" + folder + '\\' + video_strat + ".mp4";
+            video_path = ".\\" + folder + '\\' + video_strat + ".mp4";
+          } else {
+            video.src = ".\\" + folder + '\\' + video_strat + ".mp4";
+            prev_video = ".\\" + folder + '\\' + video_strat + ".mp4";
+            video_path = ".\\" + folder + '\\' + video_strat + ".mp4";
+          }
+        }
+        //_________________________________________________________
+
+
+        // video.src = ".\\" + folder + '\\' + cnt + ".mp4";
+        // prev_video = ".\\" + folder + '\\' + cnt + ".mp4";
+        // video_path = ".\\" + folder + '\\' + cnt + ".mp4";
+
+      } else if (check === true && Previous === true) {
+        video.src = prev_video;
+      }
+      videoContainer.appendChild(video);
+      currentVideo = video; // 현재 동영상 업데이트
+
+      // 비디오 이름 업데이트
+      const videoNameElement = document.getElementById('video_name');
+      //videoNameElement.textContent = '현재 동영상 경로: ' + video.src;
+
+      const results = document.getElementById('result_list');
+      results.innerHTML = ''; // 이전 결과 초기화
+      for (const item of resultList) {
+        results.innerHTML += `[피험자: ${item.subject_name}, 동영상: ${item.video}] 집중도: ${item.concentration}, 시간: ${item.time}<br>`;
+      }
+    }
+
+    //========================= 동영상 리플레이 =======================
+    function replayVideo() {
+      const footer_ = document.getElementById('footer');
+      footer_.style.display = "none";
+      if (currentVideo) {
+        // 현재 동영상이 재생 중이 아니라면 재생 시작
+        if (currentVideo.paused) {
+          currentVideo.play();
+        } else {
+          // 현재 동영상이 이미 재생 중이라면 일시 중지된 상태에서 다시 재생
+          currentVideo.currentTime = 0;
+        }
+      }
+    }
+
+    function replayVideo2() {
+      const footer_ = document.getElementById('footer');
+      footer_.style.display = "none";
+      const radio_container = document.getElementById('radio_container')
+      radio_container.style.display = "none";
+      const replayButton2 = document.getElementById('replay2');
+      replayButton2.style.display = "none";
+      const video = document.getElementById('video')
+      video.style.display = "block";
+      const replayButton = document.getElementById('replay');
+      replayButton.style.display = "block";
+      const currentTimeDisplay = document.getElementById("currentTime");
+      currentTimeDisplay.style.display = "block"
+
+      if (currentVideo) {
+        // 현재 동영상이 재생 중이 아니라면 재생 시작
+        if (currentVideo.paused) {
+          currentVideo.play();
+        } else {
+          // 현재 동영상이 이미 재생 중이라면 일시 중지된 상태에서 다시 재생
+          currentVideo.currentTime = 0;
+        }
+      }
+
+      const radioButtons_list = document.getElementsByName('level');
+      let result = null;
+
+      radioButtons_list.forEach((node) => {
+        if (node.checked) {
+          result = node.value;
+        }
+      })
+      console.log(result)
+      if (result !== null) {// 라디오 버튼 선택된 경우
+        resetRadioButtons()
+      }
+    }
+
+    //================ 함수 실행 시 프로그래스 바 업데이트 =================
+    function updateProgressBar() {
+      const progressBar = document.getElementById("progress_fill");
+      if (progressBar) {
+        const progressPercentage = (count / TOTAL_VIDEO_NUMBER) * 100;
+        progressBar.style.width = progressPercentage + "%";
+      }
+    }
+
+    // ==================== 엑셀 파일 저장 ====================
+    function saveToExcel(resultList) {
+      const data = resultList.map(item => [item.subject_name, item.video, item.concentration, item.time]);
+
+      const fileName = `주석결과_${annotatorName}.xlsx`;
+
+      const ws = XLSX.utils.aoa_to_sheet([['피험자', '동영상', '집중도', '시간']]);
+      XLSX.utils.sheet_add_aoa(ws, data, { origin: -1 });
+
+      // 워크시트 보호 설정 (선택사항)
+      const protectionOptions = {
+        selectLockedCells: true,
+        selectUnlockedCells: true,
+      };
+      ws['!protect'] = protectionOptions;
+
+      // 워크북 생성
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Survey Data");
+
+      // 암호 설정
+      const passwordOptions = { password: '0000' }; // 암호를 설정하려면 여기에 원하는 암호를 넣으세요.
+      XLSX.writeFile(wb, fileName, passwordOptions);
+    }
+
+    // =====================주석이 완료되면 메시지========================
+    function showCompletionMessage(bool) {
+      const completionMessage = document.getElementById("completion_message");
+      completionMessage.textContent = "주석 작성이 완료되었습니다.";
+      completionMessage.style.display = "block";
+
+      // const completionMessage2 = document.getElementById("completion_message2");
+      // completionMessage2.textContent = "이메일 보내기를 클릭하여 최종 주석 결과를 제출해 주세요.";
+      // completionMessage2.style.display = "block";
+
+      const completionMessage3 = document.getElementById("completion_message3");
+      completionMessage3.textContent = "참여해 주셔서 감사합니다.";
+      completionMessage3.style.display = "block";
+
+      // 다른 요소 숨김
+      const save_button = document.getElementById('save_button');
+      save_button.style.display = "none";
+
+      const progressBar = document.getElementById("progress_bar");
+      progressBar.style.display = "none";
+      const video_name_ = document.getElementById("video_name");
+      video_name_.style.display = "none";
+      const replay = document.getElementById('replay')
+      replay.style.display = "none";
+      const replay2 = document.getElementById('replay2')
+      replay2.style.display = "none";
+      const video_ = document.getElementById("video");
+      video_.style.display = "none";
+      const title = document.getElementById('title');
+      title.style.display = 'none'
+      const total = document.getElementById('total');
+      total.style.display = 'none'
+      const currentTimeDisplay = document.getElementById("currentTime");
+      currentTimeDisplay.style.display = "none"
+      const comment = document.getElementById("comment");
+      comment.style.display = "none"
+
+
+      // 엑셀 파일 저장 버튼을 표시
+      // const saveButton = document.getElementById('save_button');
+      // saveButton.style.display = "block";
+
+      // 주석 완료되면, 완료 이메일 전송
+      if (bool == true) {
+
+        // form 요소 가져오기
+        const finish_form = document.getElementById('finish_email');
+        finish_form.querySelector('input[name="Email"]').value = annotatorName_email;
+        finish_form.querySelector('input[name="Name"]').value = annotatorName;
+        finish_form.querySelector('input[name="Finish"]').value = '주석 완료';
+        finish_form.querySelector('input[name="Password"]').value = password;
+        finish_form.submit();
+      }
+    }
+
+    window.onload = addVideo;
+  </script>
+</head>
+
+<body>
+  <py-script>
+
+  </py-script>
+
+  <header>
+    <div id="logo-container">
+      <img id="logo" src="ETRI/images/logo.jpg" alt="dongguk logo">
+    </div>
+    <h1 id="title">GT 수집 집중도 평가</h1><br>
+    <strong>
+      <p id="total">주석 진행상황: </p>
+    </strong>
+    <div id="progress_bar_container">
+      <div id="progress_bar">
+        <div id="progress_fill"></div>
+      </div>
+    </div>
+    <!-- <p id ='blank' style="display: none;"></p> -->
+    <strong>
+      <h1 id="completion_message" style="display: none;"></h1>
+    </strong>
+    <p id="completion_message2" style="display: none;"></p>
+    <p id="completion_message3" style="display: none;"></p>
+    <p id="video_name"></p>
+  </header>
+  <main id="main">
+    <div id="video" oncontextmenu='return false'></div>
+    <span id="currentTime">0:00</span>
+    <div id="radio_container" style="display: none;"><br>
+      <p id="radio_title">영상 시청자의 집중도를 선택하세요</p><br><br>
+      <p></p>
+      <input type="radio" id="select1" name="level" value="0"><label for="select1"> 매우 낮음</label>
+      <input type="radio" id="select2" name="level" value="1"> <label for="select2">낮음</label>
+      <input type="radio" id="select3" name="level" value="2"> <label for="select3">높음</label>
+      <input type="radio" id="select4" name="level" value="3"> <label for="select4">매우 높음</label><br><br><br><br><br>
+      <button id="radio_btn" onclick="submitRadio()" style="display: none;">확인</button>
+      <button id="radio_btn" onclick="handleConfirmButtonClick()">확인</button>
+      <button id='replay2' onclick="replayVideo2()">동영상 다시보기</button><br><br>
+    </div>
+    <div id="replay_btn">
+      <button id='replay' onclick="replayVideo()">동영상 처음부터 재생</button><br><br>
+      <div></div>
+    </div>
+
+    <div id="comment"
+      style="padding: 20px; background-color:snow;  box-shadow: 10px -10px 10px -10px rgba(0.5,0.5,0.5,0.5);">
+      <h2 style="font-size: 24px; margin-top: 10px; display: flex;">
+        <img id="instruc" src="ETRI/images/survey2.png" alt="instruction"
+          style=" max-width: 35px;  height: auto; margin-right: 10px; ">
+        주석 작업
+      </h2>
+      <p style="color:#333; margin: 5px 0;">- 동영상은 자동 재생됩니다.</p>
+      <p style="color: #333; margin: 5px 0;">- 다시 보고 싶으시다면, <strong>'동영상 처음부터 재생'</strong> 버튼을 눌러주세요.</p>
+      <p style="color: #333; margin: 5px 0;">- 10초 동영상 재생이 완료되면 자동으로 집중도 평가 페이지로 넘어갑니다.</p>
+      <br>
+      <h2 style="font-size: 24px; margin-top: 10px; display: flex;">
+        <img id="warning" src="ETRI/images/warning.png" alt="warning"
+          style=" max-width: 30px;  height: auto; margin-right: 10px; ">
+        주의사항
+      </h2>
+      <p style="color: #333; margin: 5px 0;">- 현재 페이지를 <strong>'새로고침'</strong>을 할 경우, <strong>이전에 진행되었던 주석 작업이
+          초기화됩니다.</strong></p>
+      <p style="color: #333; margin: 5px 0;">- 따라서, 잠시 멈춰야 한다면 <strong>절대 페이지를 닫지 마시고</strong>, 브라우저를 유지한 상태로 있어주세요.</p>
+    </div>
+
+    <!--============================ 이메일 보내기 ============================-->
+    <form id="email" class="gform pure-form pure-form-stacked" method="POST" data-email="example@email.net"
+      target=iframe1 style="display: none;"
+      action="https://script.google.com/macros/s/AKfycby-XKHafiV2JyNvDzr5xRrzXst9GTx1Uv9p3MpPWk4-2pvoLZkTFYhNxDRDWxJKIcZwog/exec">
+      <!-- change the form action to your script url -->
+      <div class="form-elements">
+        <fieldset class="pure-group">
+          <br><br><br>
+          <label for="email"> 이메일 주소:</label>
+          <input id="Email" name="Email" type="Email" value="" required placeholder="your.name@email.com" />
+        </fieldset>
+        <fieldset class="pure-group">
+          <label for="Name">이름: </label>
+          <input id="Name" name="Name" placeholder="홍길동" />
+        </fieldset>
+        <fieldset class="pure-group" style="display: none;">
+          <label style="display: none;" for="Subject">피험자 </label>
+          <input id="Subject" name="Subject" style="display: none;" placeholder="" />
+        </fieldset>
+        <fieldset class="pure-group" style="display: none;">
+          <label style="display: none;" for="Video">동영상 </label>
+          <input id="Video" name="Video" style="display: none;" placeholder="" />
+        </fieldset>
+        <fieldset class="pure-group" style="display: none;">
+          <label style="display: none;" for="Concentration">집중도 </label>
+          <input id="Concentration" name="Concentration" style="display: none;" placeholder="" />
+        </fieldset>
+        <fieldset class="pure-group" style="display: none;">
+          <label style="display: none;" for="Time">시간 </label>
+          <input id="Time" name="Time_check" style="display: none;" placeholder="" />
+        </fieldset>
+        <fieldset class="pure-group honeypot-field" style="display: none;">
+          <label for="honeypot">To help avoid spam, utilize a Honeypot technique with a hidden text field; must be empty
+            to submit the form! Otherwise, we assume the user is a spam bot.</label>
+          <input id="honeypot" type="text" name="honeypot" value="" />
+        </fieldset>
+        <br><br>
+        <button><i class="fa fa-paper-plane"></i>&nbsp;이메일 보내기</button>
+        <!-- <br><br><br><br><br> -->
+      </div>
+      <!-- Customise the Thankyou Message People See when they submit the form: -->
+      <div class="thankyou_message" style="display:none;">
+        <h2><em>Thanks</em> for contacting us!
+          We will get back to you soon!</h2>
+      </div>
+    </form>
+    <iframe id="iframe1" name="iframe1" style="display:none"></iframe>
+    <!-- Submit the Form to Google Using "AJAX" -->
+    <script data-cfasync="false" src="form-submission-handler.js"></script>
+
+    <form id="finish_email" method="POST" data-email="example@email.net" target=finish_email_target
+      style="display: none;"
+      action="https://script.google.com/macros/s/AKfycbzm8-YXs9PTfHCOL0M5o75U7PLtFtm8YZ3vZyVgSGcjFGosXl_lFA8d9Ea57HuuM52d/exec">
+      <div class="form-elements">
+        <fieldset class="pure-group">
+          <input id="Finish_Email" name="Email" value="" placeholder="">
+        </fieldset>
+        <fieldset class="pure-group">
+          <input id="Finish_Name" name="Name" value="" placeholder="">
+        </fieldset>
+        <fieldset class="pure-group">
+          <input id="Finish" name="Finish" value="" placeholder="">
+        </fieldset>
+        <fieldset class="pure-group">
+          <input id="Finish_Password" name="Password" value="" placeholder="">
+        </fieldset>
+      </div>
+    </form>
+    <iframe name="finish_email_target" style="display:none"></iframe>
+
+
+
+    <!-- Submit the Form to Google Using "AJAX" -->
+    <!-- <script data-cfasync="false" src="form-submission-handler.js"></script>-->
+    <button id="save_button" style="display: none;" onclick="saveToExcel(resultList)">엑셀파일저장</button>
+    <br><br><br><br><br>
+    <!-- END -->
+  </main>
+  <footer id="footer" style="display: none;">
+    <h2 id="result_title">주석 결과</h2>
+    <p id="result_list"></p>
+  </footer>
+</body>
+
+</html>
